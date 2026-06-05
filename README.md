@@ -1,6 +1,7 @@
 # CpU Later
 
 ## Group Members
+
 - Barreo, Carlo Gabriel
 - Eleydo, Renzel Vince
 - Gregorio, Gaibril Kyle
@@ -30,36 +31,47 @@ Each action is translated into binary commands (0s and 1s), which the CPU proces
 ## CPU Core Architecture
 
 ### Control Unit (CU)
+
 The brain of the CPU. It handles data flow and directs the CPU's internal components and hardware.
 
 ### Arithmetic Logic Unit (ALU)
+
 The engine room where all logical operations and mathematical calculations are performed.
 
 ### Registers
+
 Fast temporary storage locations inside the CPU core.
 
 #### Program Counter (PC)
+
 Holds the memory address of the next instruction to be executed.
 
 #### Accumulator (ACC)
+
 The most frequently used register, storing data retrieved from memory and intermediate results.
 
 #### Memory Address Register (MAR)
+
 Holds the address of the memory location to be accessed. Works together with the Memory Data Register.
 
 #### Memory Data Register (MDR)
+
 Stores data being read from or written to memory.
 
 #### Instruction Register (IR)
+
 Holds the current instruction being executed.
 
 ### Internal Buses
+
 Communication pathways that transfer data, signals, and memory addresses.
 
 ### Cache Memory
+
 Fast memory located near the CPU that stores frequently used instructions and data.
 
 ### Floating Point Unit (FPU)
+
 Handles floating-point operations, decimal calculations, and scientific computations efficiently.
 
 ---
@@ -67,18 +79,23 @@ Handles floating-point operations, decimal calculations, and scientific computat
 # Instruction Cycle
 
 ## 1. Fetch Stage
+
 The CPU retrieves an instruction from main memory (RAM). It uses the Program Counter (PC) to locate the address of the next instruction. The instruction is then loaded into the Instruction Register (IR), and the PC advances to the next instruction.
 
 ## 2. Decode Stage
+
 The CPU determines what the instruction means. The Control Unit examines the opcode (operation type) and operands (data or memory locations), then prepares the CPU by issuing the required control signals.
 
 ## 3. Execute Stage
+
 The CPU performs the instruction. This may involve arithmetic or logical operations in the ALU, moving data, or making control-flow decisions such as branching.
 
 ## 4. Memory Access
+
 If required, the CPU reads data from or writes data to memory. This may involve retrieving values from RAM or storing results.
 
 ## 5. Write Back
+
 The final result is written to a register or memory location. The CPU then proceeds to the next instruction.
 
 ---
@@ -106,9 +123,11 @@ Caching is a technique in which the CPU stores frequently used data and instruct
 ## How Caching Works
 
 ### 1. CPU Requests Data
+
 The CPU requests a specific value or instruction.
 
 ### 2. Cache Lookup
+
 The CPU checks the cache hierarchy:
 
 - **L1 Cache** (fastest)
@@ -121,9 +140,11 @@ If the requested data is found, a **cache hit** occurs and the data is returned 
 If not found, a **cache miss** occurs and the CPU continues searching in lower cache levels or RAM.
 
 ### 3. Load a Cache Line
+
 If the data is not available in any cache level, the CPU fetches a **64-byte cache line** containing the requested address from the next memory level.
 
 ### 4. Store in Cache
+
 The fetched cache line is placed into the cache so future accesses can be completed faster.
 
 ---
@@ -152,15 +173,19 @@ A simple calculator that supports:
 ### Animation Flow
 
 #### Fetch
+
 Animated visualization showing information moving from Memory to the Instruction Register.
 
 #### Decode
+
 Instruction Register highlights or expands to visually show instruction decoding.
 
 #### Execute
+
 The ALU visually performs the selected operation.
 
 #### Result
+
 Accumulator updates with animated feedback showing the computed result.
 
 ---
@@ -185,18 +210,12 @@ Following the Astro Build template:
 
 # Style Guide Snapshot
 
-> *To be added.*
-
 ---
 
 # References
 
 1. Badescu, R. (2023, October 12). *Anatomy of a CPU*. Medium.com. Retrieved June 5, 2026, from https://medium.com/@razvanbadescu/anatomy-of-a-cpu-bc02cd950cca
-
 2. GeeksforGeeks. (2025, November 10). *Basics of Pipelining*. https://www.geeksforgeeks.org/computer-organization-architecture/basics-of-pipelining/
-
 3. GeeksforGeeks. (2021, June 2). *Cache Memory*. https://www.geeksforgeeks.org/computer-science-fundamentals/cache-memory/
-
 4. GeeksforGeeks. (2025, July 12). *Different Classes of CPU Registers*. https://www.geeksforgeeks.org/computer-organization-architecture/different-classes-of-cpu-registers/
-
 5. GeeksforGeeks. (2018, March 29). *Computer Organization | Different Instruction Cycles*. https://www.geeksforgeeks.org/computer-organization-architecture/different-instruction-cycles/
