@@ -208,9 +208,43 @@ Following the Astro Build template:
 
 ---
 
-# Style Guide Snapshot
-
 ---
+
+# III. Style Guide Snapshot & Proposed Design Layout
+
+To ensure our virtual exhibit is both visually striking and cognitively optimized for learning, we have established a concise, **mobile-responsive** design system. Our design language utilizes **"Cyber-Physical Glassmorphism,"** blending the aesthetics of raw machine hardware with semi-transparent digital interfaces to deeply immerse the visitor.
+
+### 1. Design System Tokens & Psychology
+
+* **Base Background:** Deep Silicon (`bg-slate-950`) – A dark-mode foundation featuring an ambient grid backdrop and blurred cyan glows to minimize eye strain and allow interface borders to pop.
+* **Action Accent:** Bioluminescent Cyan (`text-cyan-400`, `bg-cyan-500/10`) – A high-energy color used exclusively to draw attention to interactive elements, execution traces, and active CPU stages.
+* **Data Highlight:** Warning Amber (`text-amber-400`, `bg-amber-500/10`) – Used specifically to track data moving through the Instruction Register (IR) and Accumulator (ACC) during the Fetch-Decode-Execute flow.
+* **Glass Containers:** Semi-transparent cards (`bg-white/5`) with a background blur (`backdrop-blur-md`) and subtle borders (`border-white/10`) to create structural depth.
+
+### 2. Typography
+
+* **Headers & Body Content:** *Geist Sans* – A highly optimized sans-serif typeface, establishing a clear visual hierarchy and perfect legibility inside dense instructional text blocks.
+* **Simulator Data:** *Geist Mono* – Provides a realistic, machine-level data anchor for execution logs, opcodes, memory addresses, and component states.
+
+### 3. Layout Architecture & Responsiveness
+
+* **Progressive Disclosure:** Instead of overwhelming visitors with text walls, ShadcnUI Accordions are used to let users reveal complex content cards systematically (e.g., Core Architecture, Pipelining, Caching).
+* **Micro-Interactions:** Active register blocks feature dynamic glowing drop-shadows (e.g., `shadow-[0_0_22px_-2px_rgba(34,211,238,0.55)]`) to provide immediate visual feedback during the execution cycle.
+* **Mobile-Responsive Flow:** On mobile devices, the layout collapses into a vertical stack (`flex-col`), while desktop views utilize a precise 5/7 split grid (`md:grid-cols-12`). The calculator remains accessible while users simultaneously watch the CPU diagram update.
+
+
+
+### Desktop Layout Snapshot
+
+![Desktop View - Main](./image/README/PC%201.png)
+![Desktop View - Footer](./image/README/PC%202%20FOOTER.png)
+
+### Mobile Layout Snapshot
+
+![Mobile View - Top](./image/README/MOBILE%201.png)
+![Mobile View - Middle](./image/README/MOBILE%202.png)
+![Mobile View - Bottom](./image/README/MOBILE%203.png)
+
 
 # References
 
