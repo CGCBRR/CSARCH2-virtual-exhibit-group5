@@ -86,16 +86,8 @@ Layout Structure: A split-panel view on desktop (Interactive Simulator on the le
 Proposed Virtual Exhibit Design Layout:
 (Below is the high-fidelity UI snapshot of our proposed Cache Memory Visualizer)
 
-**1. Desktop View: Cache Hit State**
-*(Below is the full UI showing a successful Cache Hit)*
 <img width="1087" height="584" alt="1" src="https://github.com/user-attachments/assets/57dbc090-3085-4c76-8231-949b8ffdf5e4" />
-
-**2. Desktop View: Cache Miss State**
-*(Below is the full UI showing a slower Cache Miss fetching from RAM)*
 <img width="1090" height="591" alt="2" src="https://github.com/user-attachments/assets/e7f01dcb-3829-4ba0-9e42-6d8deb498d4c" />
-
-
-**3. Mobile View / Component Breakdown**
 <img width="213" height="483" alt="4" src="https://github.com/user-attachments/assets/c3b68db1-1fbb-4d79-ac0a-f914ff03d050" />
 <img width="218" height="506" alt="3" src="https://github.com/user-attachments/assets/2b2e8621-0582-470c-b738-3202daded6ff" />
 <img width="238" height="510" alt="5" src="https://github.com/user-attachments/assets/f026b08a-2cb3-40fe-9447-b27e17972403" />
