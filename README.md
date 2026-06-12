@@ -1,102 +1,176 @@
-CSARCH2 Virtual Exhibit: Case Study Proposal
+# CSARCH2 Virtual Exhibit: Case Study Proposal
 
-Group Title: Ca-Ching! (Group 5)
-GitHub Repository Link: https://github.com/CGCBRR/CSARCH2-virtual-exhibit-group5
+## 📝 Revisions Highlight (From Initial Submission)
+To fully align with the project rubrics and feedback, our group has made the following major revisions to our initial proposal:
+* **Refined Theme & Group Identity:** We pivoted our group name from *"CpU Later"* to *"Ca-Ching!"* and narrowed our topic scope. Instead of covering the entire CPU architecture and Fetch-Decode-Execute cycle, we are now laser-focused exclusively on **Cache Memory Mechanisms (Hits, Misses, and Locality)** to provide a much deeper, more educational dive.
+* **Upgraded Interactive Element (No Static Slides):** We completely scrapped the basic calculator simulator. Our new interactive element is a **Dynamic CPU Cache Visualizer**. Users will actively input Hex memory addresses, and the system will compute the binary conversion, slice the bits (Tag, Index, Offset) in real-time, and animate the data routing.
+* **Modernized Tech Stack:** To ensure the interactive element is highly animated and avoids feeling like a "static PowerPoint", we explicitly added **Framer Motion** and **ReactJS** to our Astro 6 / Node.js 26 framework to handle complex, real-time data-flow animations.
 
-Group Members:
-Barreo, Carlo Gabriel
-Eleydo, Renzel Vince
-Gregorio, Gaibril Kyle
-Leano, Jeremy
-Rebudiao, Daniel Christian
+---
 
-Topic Theme: Caching! - How Cache Memory Works?
+## Group Information
+**Group Title:** Ca-Ching! (Group 5)
+**GitHub Repository:** [CGCBRR/CSARCH2-virtual-exhibit-group5](https://github.com/CGCBRR/CSARCH2-virtual-exhibit-group5)
 
-I. The Core Concept: How Cache Memory Works
+---
 
-1. The Hardware Speed Gap and Cache Memory
-The Hardware Speed Gap: CPUs have become incredibly fast, while the main memory (RAM) has remained fairly slow. Even though RAM is more affordable, the speed is its drawback. This creates a severe problem where a fast processor constantly wastes time waiting for data from the slower RAM. This is where Cache Memory kicks in.
+## Group Members
 
-Cache Memory: A small, ultra-fast memory that sits directly or next to the CPU. It bridges the gap between RAMs and CPUs by acting as an ultra-fast buffer that frequently stores used data. It also serves as a temporary storage area from which the computer's processor can efficiently retrieve data. Cache memory operates approximately 10 to 100 times faster than random access memory (RAM) and typically responds to a central processing unit (CPU) request within a few nanoseconds.
+| Name                       | Role   |
+| -------------------------- | ------ |
+| Barreo, Carlo Gabriel      | Member |
+| Eleydo, Renzel Vince       | Member |
+| Gregorio, Gaibril Kyle     | Member |
+| Leano, Jeremy              | Member |
+| Rebudiao, Daniel Christian | Member |
 
-2. Cache Hits vs. Cache Misses
-A cache hit happens when the CPU requests data and finds it already stored in the cache memory. Since cache is much faster than RAM, the CPU can retrieve the data quickly without waiting for slower memory access. This makes the computer run faster because the processor spends less time searching for information.
+---
 
-A cache miss happens when the CPU requests data but cannot find it in the cache. The CPU then has to check other memory such as L2, L3 cache, or RAM to get the data. Since these memory levels are slower than the cache, it takes more time and can slow down the computer.
+## Topic Theme
 
-How Cache Hits and Cache Misses Work:
-CPU requests data: The processor first checks the cache memory.
-Cache lookup: If the requested data exists in the cache, a cache hit occurs and the CPU immediately uses the data.
-Cache miss: If the data is unavailable, the CPU searches lower memory levels until the data is found.
-Cache update: After retrieving missing data, the CPU stores a copy inside the cache so future requests can be faster.
+**Caching! — How Cache Memory Works**
 
-3. Principle of Locality in Cache of Reference
-The Principle of Locality refers to the idea that programs tend to use the same data and instructions repeatedly or access the data that is located near recently accessed data. When applied in caching, this improves its effectiveness in fetching data. Ideally, there are two main types of locality:
+---
 
-Temporal Locality (Locality in Time): In this principle, it basically says that if a memory location is accessed, it is likely that it will be accessed again soon. For example, a program that adds a value repeatedly:
+## I. The Core Concept: How Cache Memory Works
 
+### 1. The Hardware Speed Gap and Cache Memory
+
+**The Hardware Speed Gap**
+
+CPUs have become incredibly fast, while main memory (RAM) has remained comparatively slow. Despite RAM being more affordable, its speed is a significant drawback. This creates a bottleneck where a fast processor constantly waits for data from slower RAM.
+
+**Cache Memory**
+
+Cache memory is a small, ultra-fast memory that sits directly on or adjacent to the CPU. It bridges the gap between RAM and the CPU by acting as a high-speed buffer that stores frequently accessed data — serving as a temporary storage area from which the processor can retrieve data efficiently.
+
+> Cache memory operates approximately **10 to 100 times faster** than RAM and typically responds to a CPU request within a few nanoseconds.
+
+---
+
+### 2. Cache Hits vs. Cache Misses
+
+**Cache Hit**
+
+A cache hit occurs when the CPU requests data and finds it already stored in cache memory. Since cache is much faster than RAM, the CPU retrieves the data immediately — reducing latency and improving overall system performance.
+
+**Cache Miss**
+
+A cache miss occurs when the CPU requests data that is not present in the cache. The CPU must then check other memory levels (L2, L3 cache, or RAM) to retrieve the data, resulting in increased access time and reduced performance.
+
+**How Cache Hits and Misses Work (Step-by-Step)**
+
+1. **CPU requests data** — The processor first checks cache memory.
+2. **Cache lookup** — If the requested data exists in cache, a *hit* occurs and the CPU immediately uses the data.
+3. **Cache miss** — If the data is unavailable in cache, the CPU searches lower memory levels until the data is found.
+4. **Cache update** — After retrieving the missing data, the CPU stores a copy in cache so future requests can be served faster.
+
+---
+
+### 3. Principle of Locality of Reference
+
+The **Principle of Locality** describes the tendency of programs to repeatedly access the same data and instructions, or to access data located near recently accessed memory. Applying this principle in cache design significantly improves cache effectiveness. There are two main types:
+
+**Temporal Locality (Locality in Time)**
+
+If a memory location is accessed, it is likely to be accessed again soon. For example, in the loop below, the variable `total` is accessed repeatedly across iterations — keeping it in cache enables faster access each time:
+
+```c
 for (int i = 0; i < 1000; i++) {
     sum += total;
 }
+```
 
-Here, the variable total is accessed multiple times through each iteration, this means that keeping those variables in the cache allows for faster storing and fetching from the memory.
+**Spatial Locality (Locality in Space)**
 
-Spatial Locality (Locality in Space): Likewise, Spatial Locality says that if a memory location is accessed, it is likely that nearby memory locations are likely to be accessed soon also. For example, a program that adds all the values of an array together:
+If a memory location is accessed, nearby memory locations are likely to be accessed soon as well. For example, the array traversal below accesses `arr[i]` sequentially — since array elements are stored contiguously in memory, loading one cache block often brings in nearby elements that will soon be needed:
 
+```c
 for (int i = 0; i < 1000; i++) {
     sum += arr[i];
 }
+```
 
-In this program arr[i] is being traversed sequentially and since the array elements are stored next to each other in the memory, loading one cache block often brings in nearby elements that will soon be needed.
+---
+
+## II. Tech Stack Plan
+
+### 1. Proposed Interactive Element: CPU Cache Visualizer
+
+Users simulate a CPU data request by typing a hexadecimal memory address. The visualizer then performs and displays the following steps:
+
+**Address Breakdown**
+
+- Converts the hex address to binary.
+- Slices the binary bits into Tag, Index, and Offset fields.
+- Animates lines or particle streams from each bit field to its corresponding location in the cache hardware.
+
+**Cache Hit Visualization**
+
+- Checks the calculated row index, confirms the valid bit is active, and verifies the address tag matches the stored tag.
+- The targeted cache cell glows, the offset bits isolate the data, and a fast light-colored stream shoots back to the CPU with low-latency statistics displayed.
+
+**Cache Miss Visualization**
+
+- If the row is empty or tags do not match, a miss icon flashes and a slow gray data stream crawls down to RAM.
+- RAM fetches a full memory block (exploiting spatial locality), overwrites the cache row metadata, and sends data back to the CPU with high-latency statistics displayed.
+
+---
+
+### 2. Technical Stack
+
+To ensure seamless integration with the central virtual museum repository, the project strictly uses the following technologies:
+
+| Layer          | Technology                                          |
+| -------------- | --------------------------------------------------- |
+| Core Framework | Node.js 26 + Astro 6 (via `astro.build` template) |
+| Interactivity  | ReactJS components embedded in Astro `.mdx` pages |
+| Styling        | TailwindCSS + ShadcnUI                              |
+| Animations     | Framer Motion                                       |
+
+Framer Motion handles complex visual transitions, including animated address calculations and data flow between the CPU, cache, and RAM.
+
+---
+
+## III. Style Guide
+
+The exhibit uses a **Cyber-Physical Glassmorphism** design system built with Tailwind CSS and ShadcnUI, optimized for both desktop and mobile viewing.
+
+| Element              | Specification                                             |
+| -------------------- | --------------------------------------------------------- |
+| Background           | Deep dark mode —`slate-950`                            |
+| Cache Hit Indicator  | Vibrant green and cyan glowing borders                    |
+| Cache Miss Indicator | Muted gray and amber tones                                |
+| Typography           | Sans-serif (Inter or Geist) for high readability          |
+| Desktop Layout       | Split-panel view — Simulator (left) / Visualizer (right) |
+| Mobile Layout        | Single scrollable column via responsive grid              |
+
+**Design Principles**
+
+- High-contrast, glowing accents indicate data flow between the CPU and memory hierarchy.
+- Clean educational typography is used for Exhibit Notes accordion sections.
+- Responsive grid ensures the layout adapts gracefully across all screen sizes.
+
+### Proposed Virtual Exhibit Design Layout
+
+The following are high-fidelity UI snapshots of the proposed Cache Memory Visualizer:
+
+**Desktop Views**
+
+<img width="1090" height="591" alt="2" src="https://github.com/user-attachments/assets/c01a5f43-b57f-4ceb-8c19-b76b874f8e94" />
+<img width="1087" height="584" alt="1" src="https://github.com/user-attachments/assets/3c3e3fa7-ef0a-4d06-8454-bb79edab9de7" />
 
 
-II. Tech-Stack Plan
+**Mobile Views**
 
-1. Proposed Interactive Element: CPU Cache Visualizer
-Users can simulate requesting data from a specific hex address by typing it, simulating a CPU requesting data.
+<img width="218" height="506" alt="3" src="https://github.com/user-attachments/assets/542968fb-e0d6-475a-bfe2-6e3209fb6a65" />
+<img width="213" height="483" alt="4" src="https://github.com/user-attachments/assets/b3b1cfbb-2cb3-44f9-b50b-02c3adbfe648" />
+<img width="238" height="510" alt="5" src="https://github.com/user-attachments/assets/620f7a40-147c-4d91-971c-8ec8ec16622a" />
+<img width="244" height="516" alt="6" src="https://github.com/user-attachments/assets/404480bd-b70f-4c2a-9a64-1db789afc630" />
 
-After the user types in the hex address, calculations are shown on the screen visually:
-The system will convert the hex address to binary.
-It will slice the bits (Tag, Index, Offset).
-Lines or glowing particle streams shoot out from each sliced section to show exactly where they go in the cache hardware.
+---
 
-Cache Hit Visualization:
-The system checks the calculated row index, sees the valid bit is active, and confirms the address tag matches the stored tag.
-The targeted grid cell glows, isolates the data using the offset bits, and shoots a fast light color back to the CPU with low latency stats.
+## IV. References
 
-Cache Miss Visualization:
-If the row is empty or the tags don't match, flashing a miss icon and sending a slow, sluggish gray data stream crawling down to RAM.
-RAM fetches a full block of data to exploit spatial locality, overwrites the cache row's metadata, and finally sends the data back to the CPU with high latency stats.
-
-2. Technical Tech Stack
-To ensure seamless integration with the central virtual museum repository, our core framework will strictly utilize Node.js 26 and Astro 6, building directly upon the provided astro.build template.
-
-For our interactive CPU Cache Visualizer we will develop the visualization logic using ReactJS components embedded within Astro's .mdx pages. To guarantee a highly mobile-responsive layout, we will use TailwindCSS for structural styling alongside ShadcnUI to provide clean, accessible interactive elements. Finally, to bring the cache visualizer to life, we will implement Framer Motion to handle the complex visual transitions, such as animating the calculations, and the data flowing from the cache to the CPU or memory to the CPU.
-
-
-III. Style Guide Snapshot
-
-To ensure our virtual exhibit is highly engaging and accessible, we will utilize a Cyber-Physical Glassmorphism design system built with Tailwind CSS and ShadcnUI. This layout is optimized for both desktop and mobile viewing and perfectly complements our Cache Memory simulation.
-
-Color Palette: Deep dark mode background (slate-950) with high-contrast, glowing accents to indicate data flow between the CPU and memory hierarchy.
-State Indicators: We will use vibrant green and cyan glowing borders to indicate Cache Hits, and muted gray and amber tones to indicate slower Cache Misses when the CPU has to fetch from main memory.
-Typography: Clean, sans-serif fonts (such as Inter or Geist) for high readability in the educational Exhibit Notes accordion sections.
-Layout Structure: A split-panel view on desktop (Interactive Simulator on the left, Cache Visualizer on the right) that seamlessly stacks into a single scrollable column on mobile devices using a responsive grid system.
-
-Proposed Virtual Exhibit Design Layout:
-(Below is the high-fidelity UI snapshot of our proposed Cache Memory Visualizer)
-
-<img width="1087" height="584" alt="1" src="https://github.com/user-attachments/assets/57dbc090-3085-4c76-8231-949b8ffdf5e4" />
-<img width="1090" height="591" alt="2" src="https://github.com/user-attachments/assets/e7f01dcb-3829-4ba0-9e42-6d8deb498d4c" />
-<img width="213" height="483" alt="4" src="https://github.com/user-attachments/assets/c3b68db1-1fbb-4d79-ac0a-f914ff03d050" />
-<img width="218" height="506" alt="3" src="https://github.com/user-attachments/assets/2b2e8621-0582-470c-b738-3202daded6ff" />
-<img width="238" height="510" alt="5" src="https://github.com/user-attachments/assets/f026b08a-2cb3-40fe-9447-b27e17972403" />
-<img width="244" height="516" alt="6" src="https://github.com/user-attachments/assets/d1943d74-ce02-45e6-b1fa-78a275e96186" />
-
-
-
-
-IV. References
-
-Cache Miss vs Cache Hit: What’s the Difference? (2023, May 10). WP Rocket. https://wp-rocket.me/wordpress-cache/cache-miss-vs-cache-hit/
-Lutkevich, B. (2024, June 25). cache memory. Search Storage. https://www.techtarget.com/searchstorage/definition/cache-memory
+- *Cache Miss vs Cache Hit: What's the Difference?* (2023, May 10). WP Rocket. https://wp-rocket.me/wordpress-cache/cache-miss-vs-cache-hit/
+- Lutkevich, B. (2024, June 25). *Cache memory*. Search Storage, TechTarget. https://www.techtarget.com/searchstorage/definition/cache-memory
