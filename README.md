@@ -227,22 +227,6 @@ The exhibit uses a **Cyber-Physical Glassmorphism** design system built with Tai
 - Clean educational typography is used for Exhibit Notes accordion sections.
 - Responsive grid ensures the layout adapts gracefully across all screen sizes.
 
-### Proposed Virtual Exhibit Design Layout
-
-The following are high-fidelity UI snapshots of the proposed Cache Memory Visualizer:
-
-**Desktop Views**
-
-<img width="1090" height="591" alt="2" src="https://github.com/user-attachments/assets/c01a5f43-b57f-4ceb-8c19-b76b874f8e94" />
-<img width="1087" height="584" alt="1" src="https://github.com/user-attachments/assets/3c3e3fa7-ef0a-4d06-8454-bb79edab9de7" />
-
-**Mobile Views**
-
-<img width="218" height="506" alt="3" src="https://github.com/user-attachments/assets/542968fb-e0d6-475a-bfe2-6e3209fb6a65" />
-<img width="213" height="483" alt="4" src="https://github.com/user-attachments/assets/b3b1cfbb-2cb3-44f9-b50b-02c3adbfe648" />
-<img width="238" height="510" alt="5" src="https://github.com/user-attachments/assets/620f7a40-147c-4d91-971c-8ec8ec16622a" />
-<img width="244" height="516" alt="6" src="https://github.com/user-attachments/assets/404480bd-b70f-4c2a-9a64-1db789afc630" />
-
 ---
 
 # IV. References
