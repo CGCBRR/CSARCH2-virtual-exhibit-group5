@@ -1,17 +1,55 @@
 ---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro'
+import { MemoryStick } from 'lucide-react'
 
+// Import your React components - fixed paths
+import SimulatorControls from '@/components/simulator-controls'
+import ExhibitNotes from '@/components/exhibit-notes'
+import Visualizer from '@/components/visualizer'
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <main class="min-h-dvh bg-slate-950 text-slate-100 selection:bg-cyan-500/30">
+    <!-- subtle grid glow background -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_30%_10%,rgba(34,211,238,0.07),transparent_45%),radial-gradient(circle_at_80%_60%,rgba(16,185,129,0.05),transparent_45%)]"
+    />
+
+    <div class="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+      <!-- Title area -->
+      <header class="mb-8 flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class="flex size-8 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.25)]">
+            <MemoryStick class="size-5" aria-hidden="true" />
+          </span>
+          <span class="font-mono text-xs uppercase tracking-widest text-cyan-400/80">
+            CPU Cache Visualizer
+          </span>
+        </div>
+        <h1 class="text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl">
+          Ca-Ching!{' '}
+          <span class="text-cyan-400">— The Cache Visualizer</span>
+        </h1>
+        <p class="max-w-2xl text-pretty text-sm leading-relaxed text-slate-400">
+          Watch the CPU race against the hardware speed gap. Fetch a memory
+          address and see whether it&apos;s a lightning-fast cache hit or a
+          costly trip down to main memory.
+        </p>
+      </header>
+
+      <!-- Responsive split: single column on mobile, 40/60 on desktop -->
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_3fr]">
+        <!-- LEFT: controller + notes -->
+        <div class="flex flex-col gap-6">
+          <SimulatorControls client:load />
+          <ExhibitNotes client:load />
+        </div>
+
+        <!-- RIGHT: visualizer + latency dashboard -->
+        <Visualizer client:load />
+      </div>
+    </div>
+  </main>
+</BaseLayout>
